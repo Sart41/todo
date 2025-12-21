@@ -5,24 +5,37 @@ import styles from './TodoFilter.module.scss'
 
 export const TodoFilter = (props) => {
    const {
-      setFilter
+      onChange,
+      value
    } = props
+
 
    return (
       <div className={clsx(styles.root)}>
          <span>Отобразить</span>
          <div className={clsx(styles.actions)}>
-            <Button onClick= {()=>setFilter('all')}>
+
+            <Button
+               isActive={value === 'all'}
+               onClick={() => onChange('all')}
+            >
                Все
             </Button>
 
-            <Button onClick={() => setFilter('active')}>
+            <Button
+               isActive={value === 'active'}
+               onClick={() => onChange('active')}
+            >
                Активные
             </Button>
 
-            <Button onClick={() => setFilter('completed')}>
+            <Button
+               isActive={value === 'completed'}
+               onClick={() => onChange('completed')}
+            >
                Выполненные
             </Button>
+
          </div>
       </div>
    )

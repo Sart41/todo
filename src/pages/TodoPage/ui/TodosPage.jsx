@@ -7,7 +7,7 @@ import { TodoInfo } from '@/widgets/todo-info'
 import { createTodo, toggleCompleted, updateTitle } from '@/entities/todo'
 import { todoStorage } from '@/shared/lib'
 import { TodoFilter } from '@/widgets/todo-filter'
-import {filterTodos} from '@/pages/TodoPage' 
+import { filterTodos } from '@/pages/TodoPage'
 
 
 export const TodosPage = () => {
@@ -60,7 +60,7 @@ export const TodosPage = () => {
 
   return (
     <div className={clsx(styles.page)}>
-      <div className={clsx('container',styles.todo)}>
+      <div className={clsx('container', styles.todo)}>
         <h1 className={clsx(styles.title)} >hello</h1>
         <div className={clsx(styles.content)}>
 
@@ -71,7 +71,10 @@ export const TodosPage = () => {
             onSubmitForm={addTodo}
           />
 
-          {total > 0 && <TodoFilter setFilter = {setFilter}/>}
+          {total > 0 && <TodoFilter
+            onChange={setFilter}
+            value={filter}
+          />}
 
           {total > 0 && <TodoInfo
             total={total}

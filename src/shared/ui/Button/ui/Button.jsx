@@ -7,14 +7,17 @@ export const Button = (props) => {
     type = 'button',
     onClick,
     iconOnly = false,
+    isActive = false,
     children,
     ...rest
   } = props
 
   return (
     <button
-      className={clsx(styles.root, iconOnly && styles.iconOnly, className)}
       type={type}
+      data-active={isActive}
+      data-icon-only={iconOnly}
+      className={clsx(styles.root, className)}
       {...rest}
       onClick={onClick}
     >
