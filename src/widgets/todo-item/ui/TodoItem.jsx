@@ -24,7 +24,9 @@ export const TodoItem = (props) => {
         />
       </div>
 
-      <div className={clsx(styles.title)}>{todo.title}</div>
+      <div
+        className={clsx(styles.title, todo.isCompleted && styles.checked)}>{todo.title}
+       </div>
 
       <div className={clsx(styles.actions)}>
 

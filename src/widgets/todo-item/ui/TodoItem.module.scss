@@ -18,6 +18,11 @@
   justify-content: center;
 }
 
+.checked{
+  text-decoration: line-through;
+  color: #9e9e9e;
+}
+
 .title{
   flex-grow: 1;
 }
