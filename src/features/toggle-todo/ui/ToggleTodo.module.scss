@@ -1,0 +1,80 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #9e9e9e;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.input:checked+.box {
+  background-color: #78c569;
+  border-color: #78c569;
+  color: white;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  color: white;
+}
+
+.input:checked+.box::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+// .box {
+//   width: 18px;
+//   height: 18px;
+//   border: 2px solid #9e9e9e;
+//   border-radius: 4px;
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   transition: all 0.15s ease;
+// }
+
+// /* checked */
+// .input:checked+.box {
+//   background-color: #1e88e5;
+//   border-color: #1e88e5;
+// }
+
+// .input:checked+.box::after {
+//   content: '';
+//   width: 8px;
+//   height: 8px;
+//   background-color: white;
+//   border-radius: 2px;
+// }
+
+// /* focus (keyboard) */
+// .input:focus-visible+.box {
+//   outline: 2px solid #90caf9;
+//   outline-offset: 2px;
+// }
+
+// /* disabled */
+// .input:disabled+.box {
+//   opacity: 0.5;
+//   cursor: not-allowed;
+// }

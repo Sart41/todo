@@ -1,0 +1,33 @@
+@use '@/shared/styles/functions' as *;
+
+.root {
+  position: relative;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  max-width: 670px;
+  width: 100%;
+}
+
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.title {
+  font-size: calcValue(28, 32, 400);
+  margin-bottom: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  & button{
+    @media (width > 676px) {
+      margin-left: auto;
+    }
+  }
+
+}

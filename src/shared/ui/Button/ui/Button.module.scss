@@ -1,0 +1,30 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 8px;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: var(--color-primary);
+  color: black;
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    scale: 1.02;
+    cursor: pointer;
+  }
+
+  &:active {
+    scale: 1.05;
+  }
+}
+
+.iconOnly {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background-color: transparent;
+}

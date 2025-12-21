@@ -1,0 +1,28 @@
+.root {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-inline: 16px;
+  padding-block-end: 16px;
+  border-bottom: 2px solid var(--color-gray-2);
+}
+
+.root span{
+  @media (width <=474.98px) {
+    display: none;
+  }
+}
+
+.actions{
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap; 
+  
+
+  @media (width <= 475px) {
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+}

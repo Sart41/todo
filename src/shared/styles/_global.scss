@@ -1,0 +1,39 @@
+@use '@/shared/styles/functions' as *;
+@use '@/shared/styles/mixins' as *;
+
+html,body{
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font: var(--base-font-weight) var(--base-font-size) / var(--base-line-height) var(--base-font-family);
+}
+
+.container {
+  width: 100%;
+  max-width: calc(var(--container-width) + calc(var(--container-padding-x) * 2));
+  margin-inline: auto;
+  padding-inline: 16px;
+
+  &--small {
+    --container-width: 1088px;
+  }
+}
+
+
+.sr-only {
+  position: absolute;
+  top: auto;
+  left: -10000px;
+
+  overflow: hidden;
+
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
+.show {
+  display: block;
+}

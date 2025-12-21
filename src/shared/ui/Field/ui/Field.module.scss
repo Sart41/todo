@@ -1,0 +1,38 @@
+.field {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  
+  &:has(input:not(:placeholder-shown)) label {
+    scale: 0.7;
+    translate: -1.75em -2.6em;
+  }
+
+  & label {
+    position: absolute;
+    top: 50%;
+    left: 17px;
+    translate: 0 -50%;
+  }
+
+  & input {
+    --fieldInputPaddingX: 16px;
+
+    width: 100%;
+    height: var(--input-height);
+    padding-inline: var(--fieldInputPaddingX);
+    background-color: transparent;
+    border: var(--border);
+    border-radius: var(--border-radius);
+
+    &:hover,
+    &:focus {
+      border-color: var(--color-dark);
+    }
+
+    &:focus {
+      background-color: var(--color-gray-1);
+      outline: none;
+    }
+  }
+}
