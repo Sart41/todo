@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './RenameTodoButton.module.scss'
 import clsx from 'clsx'
 import { Button } from '@/shared/ui/Button'
@@ -22,6 +22,7 @@ export const RenameTodoButton = (props) => {
 
   const handleConfirm = (title) => {
     onRename(id, title)
+    onClose()
   }
 
 

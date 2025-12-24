@@ -1,46 +1,54 @@
 import styles from './RenameTodoDialog.module.scss'
 import clsx from 'clsx'
-import { TodoForm } from '@/shared/ui/todo-form'
-import { useEffect } from 'react'
+import { TodoFormUI } from '@/shared/ui/todo-form'
+import { useState } from 'react'
 
 export const RenameTodoDialog = (props) => {
 
   const {
     initialTitle,
     onConfirm,
-    onClose,
   } = props
 
-  useEffect(() => {
-    const onKeyDown = (e) => {
-      if (e.key === "Escape")
-        onClose()
+  const [title, setTitle] = useState(initialTitle)
+  const [error, setError] = useState(null)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    const trimmedTitle = title.trim()
+    if (!trimmedTitle) {
+      setError('Задача не может быть пустой');
+      return
     }
 
-    window.addEventListener('keydown', onKeyDown)
-    return () => {
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [onClose])
+    onConfirm(trimmedTitle)
+  }
+
+  const handleChange = (newTitle) => {
+    if (error) setError(null);
+    setTitle(newTitle);
+  }
 
   return (
-    <dialog className={clsx(styles.root)}  open>
+    <div className={clsx(styles.root)}>
       <div className={clsx(styles.content)}>
         <h1 className={clsx(styles.title)}>Отредактируйте задачу</h1>
-        <TodoForm
+
+        <TodoFormUI
+          error={error}
           className={styles.form}
           fieldId='edit-todo'
-          initialTitle={initialTitle}
+          value={title}
           fieldLabel=''
           buttonTitle='Подтвердить'
+          autoFocus={true}
 
-          onSubmitForm={(title) => {
-            onConfirm(title)
-            onClose()
-          }
-          }
+          onChange={handleChange}
+          onSubmit={handleSubmit}
         />
+
       </div>
-    </dialog>
+    </div>
   )
 }

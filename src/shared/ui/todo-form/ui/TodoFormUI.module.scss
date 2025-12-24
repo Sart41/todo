@@ -1,11 +1,11 @@
 .root {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  padding-inline: 16px;
-}
 
-.button{
-  background-color: var(--color-primary);
-  color: black;
+  column-gap: 16px;
+  padding-inline: 16px;
+
+  @media (width <=492px) {
+    flex-direction: column;
+  }
 }

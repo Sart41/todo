@@ -1,3 +1,5 @@
+@use '@/shared/styles/functions' as *;
+
 .root {
   display: flex;
   justify-content: space-between;
@@ -5,24 +7,26 @@
   flex-wrap: wrap;
   gap: 16px;
   padding-inline: 16px;
-  padding-block-end: 16px;
+  padding-block: 8px;
+  border-top: 2px solid var(--color-gray-2);
   border-bottom: 2px solid var(--color-gray-2);
 }
 
 .root span{
-  @media (width <=474.98px) {
+  @media (width <=492px) {
     display: none;
   }
 }
 
 .actions{
   display: flex;
-  gap: 16px;
+  gap: calcValue(8, 16, 344, 676);
   flex-wrap: wrap; 
   
 
-  @media (width <= 475px) {
+  @media (width <= 492px) {
     justify-content: space-between;
     flex-grow: 1;
   }
+
 }

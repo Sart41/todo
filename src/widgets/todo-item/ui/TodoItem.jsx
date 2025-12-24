@@ -17,7 +17,7 @@ export const TodoItem = (props) => {
 
   return (
     <div className={clsx(styles.root, className)}>
-      <div className={clsx(styles.checkbox )}>
+      <div className={clsx(styles.checkbox)}>
         <ToggleTodo
           isCompleted={todo.isCompleted}
           onToggle={onToggleTodo}
@@ -25,8 +25,9 @@ export const TodoItem = (props) => {
       </div>
 
       <div
-        className={clsx(styles.title, todo.isCompleted && styles.checked)}>{todo.title}
-       </div>
+        className={clsx(styles.title, todo.isCompleted && styles.checked)}>
+        {todo.title}
+      </div>
 
       <div className={clsx(styles.actions)}>
 
@@ -39,7 +40,7 @@ export const TodoItem = (props) => {
         <DeleteTodo
           onDelete={onDeleteTodo}
         />
-        
+
       </div>
     </div>
   )

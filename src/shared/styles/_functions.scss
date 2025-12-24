@@ -34,15 +34,17 @@ $maxViewport: 1230;
   $minValueRem: toRem($minValue);
   $maxValueRem: toRem($maxValue);
 
-  $minViewportPx: if($minVP, $minVP, $minViewport);
-  $maxViewportPx: if($maxVP, $maxVP, $maxViewport);
+  // $minViewportPx: if($minVP, $minVP, $minViewport);
+  // $maxViewportPx: if($maxVP, $maxVP, $maxViewport);
+  $minViewportPx: if(sass($minVP): $minVP; else: $minViewport);
+  $maxViewportPx: if(sass($maxVP): $maxVP; else: $maxViewport);
 
   $variablePart: math.div(($maxValue - $minValue), ($maxViewportPx - $minViewportPx));
 
   $constant: toRound(math.div($maxValue - $maxViewportPx * $variablePart, 16), 3);
 
   $tempVariablePart: toRound($variablePart * 100, 2) + 'vw';
-  $tempConstant: if($constant, '#{$constant}rem +', '');
+  $tempConstant: if(sass($constant): '#{$constant}rem +'; else: '');
 
   @return clamp(#{$minValueRem}, #{$tempConstant} #{$tempVariablePart}, #{$maxValueRem});
 }

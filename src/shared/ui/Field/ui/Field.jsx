@@ -8,29 +8,46 @@ export const Field = (props) => {
     label,
     type = 'text',
     value,
-    onInput,
+    onChange,
+    autoFocus = false,
+    placeholder = ' ',
+    error,
   } = props
 
   return (
-    <div className={clsx(styles.field, className)}>
+    <div
+      className={clsx(styles.field, className,
+        { [styles.error]: error }
+      )}>
+      <div className={styles.inputWrapper}>
 
-      <label
-        className={clsx(className)}
-        htmlFor={id}
-      >
-        {label}
-      </label>
-
-      <input
-        className={clsx(className)}
-        id={id}
-        autoFocus
-        placeholder=" "
-        autoComplete="off"
-        type={type}
-        value={value}
-        onInput={onInput}
+        <input
+          id={id}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          autoFocus={autoFocus}
+          autoComplete="off"
+          onChange={({ target }) => onChange(target.value)}
         />
+
+        {label &&
+          (<label
+            htmlFor={id}
+          >
+            {label}
+          </label>)}
+      </div>
+
+      {<div className={styles.errorMessage}>
+        {error &&
+          <div className={styles.errorContainer}>
+
+            <p className={styles.error}>{error}</p>
+          </div>
+        }
+      </div>
+      }
 
     </div >
   )

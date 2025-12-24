@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react'
 import clsx from 'clsx'
 import styles from "./TodosPage.module.scss"
 import { TodoList } from '@/widgets/todo-list'
-import { TodoForm } from '@/shared/ui/todo-form'
 import { TodoInfo } from '@/widgets/todo-info'
 import { createTodo, toggleCompleted, updateTitle } from '@/entities/todo'
 import { todoStorage } from '@/shared/lib'
 import { TodoFilter } from '@/widgets/todo-filter'
 import { filterTodos } from '@/pages/TodoPage'
+import { AddTodo } from '@/features/add-todo/ui/AddTodo'
 
 
 export const TodosPage = () => {
@@ -65,10 +65,8 @@ export const TodosPage = () => {
         <div className={clsx(styles.content)}>
 
 
-          <TodoForm
-            fieldId='new-todo'
-            buttonTitle='Добавить'
-            onSubmitForm={addTodo}
+          <AddTodo
+            onAddTodo={addTodo}
           />
 
           {total > 0 && <TodoFilter
@@ -82,13 +80,13 @@ export const TodosPage = () => {
             onClearTodos={clearTodos}
           />}
 
-          <TodoList
+          {total > 0 &&<TodoList
             todos={filteredTodos}
             total={total}
             toggleTodo={toggleTodo}
             deleteTodo={deleteTodo}
             renameTodo={renameTodo}
-          />
+          />}
 
 
           {total === 0 && <div className={clsx(styles.alarm)}>
