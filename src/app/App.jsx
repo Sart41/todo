@@ -1,10 +1,14 @@
-import { TodosPage } from "../pages/TodoPage/ui/TodosPage"
-
+import {TodosPage} from "@/pages/TodosPage"
+import {TodoProvider} from "@/entities/todo";
 
 const App = () => {
+
   return (
-    <TodosPage />
+    <TodoProvider>
+      <TodosPage />
+    </TodoProvider>
   )
+
 }
 
 export default App

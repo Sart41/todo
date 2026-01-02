@@ -13,13 +13,22 @@
   cursor: pointer;
   user-select: none;
 
-  &:hover {
-    scale: 1.02;
-    cursor: pointer;
+  &:not(:disabled) {
+    &:hover {
+      scale: 1.02;
+      cursor: pointer;
+    }
+
+    &:active {
+      scale: 1.05;
+    }
   }
 
-  &:active {
-    scale: 1.05;
+
+  &:disabled {
+    background-color: var(--color-gray-3);
+    cursor: not-allowed;
+    scale: 1;
   }
 
   @media (width >=492px) {

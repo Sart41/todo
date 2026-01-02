@@ -1,7 +1,11 @@
 export const todoStorage = {
   load: () => {
-    const raw = localStorage.getItem('todos')
-    return raw ? JSON.parse(raw) : []
+    try {
+      const raw = localStorage.getItem('todos')
+      return raw ? JSON.parse(raw) : []
+    } catch {
+      return []
+    }
   },
 
   save: (todos) => {

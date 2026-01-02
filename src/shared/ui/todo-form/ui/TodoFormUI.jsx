@@ -6,6 +6,7 @@ import { Button } from '@/shared/ui/Button'
 export const TodoFormUI = (props) => {
   const {
     error,
+    disabled,
     className,
     fieldId,
     fieldLabel,
@@ -14,6 +15,7 @@ export const TodoFormUI = (props) => {
     autoFocus,
     onSubmit,
     onChange,
+    newTodoInputRef,
   } = props
 
 
@@ -30,6 +32,7 @@ export const TodoFormUI = (props) => {
         autoFocus={autoFocus}
         onChange={onChange}
         error={error}
+        ref={newTodoInputRef}
       />
 
       <Button

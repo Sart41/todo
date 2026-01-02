@@ -1,13 +1,16 @@
 import CheckIcon from '@/shared/ui/icons/check.svg?react'
-import styles from './ToggleTodo.module.scss'
 import clsx from 'clsx'
+import styles from './ToggleTodo.module.scss'
+import {useContext} from "react";
+import {ActionsContext} from "@/entities/todo";
 
 export const ToggleTodo = (props) => {
   const {
     id,
     isCompleted,
-    onToggle
   } = props
+
+  const {toggleTodo} = useContext(ActionsContext)
 
   return (
     <label className={styles.root}>
@@ -15,7 +18,7 @@ export const ToggleTodo = (props) => {
         className={clsx(styles.input, 'sr-only')}
         type="checkbox"
         checked={isCompleted}
-        onChange={() => onToggle(id)}
+        onChange={() => toggleTodo(id)}
       />
 
       <span className={styles.box}>

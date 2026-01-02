@@ -1,23 +1,25 @@
-import styles from './DeleteTodo.module.scss'
 import clsx from "clsx"
-import { Button } from "@/shared/ui/Button"
-import { DeleteIcon } from "@/shared/ui/icons"
+import {useContext} from "react";
+import {Button} from "@/shared/ui/Button"
+import {DeleteIcon} from "@/shared/ui/icons"
+import {ActionsContext} from "@/entities/todo";
 
+import styles from './DeleteTodo.module.scss'
 
-export const DeleteTodo = (props) => {
+export const DeleteTodo = ({id}) => {
 
-  const {
-    onDelete
-  } = props
+  const {deleteTodo} = useContext(ActionsContext)
 
   return (
     <Button
       className={clsx(styles.root)}
       iconOnly
       aria-label="Удалить задачу"
-      onClick={onDelete}
+      onClick={() => {
+        deleteTodo(id)
+      }}
     >
-      <DeleteIcon size = {24}/>
+      <DeleteIcon size={24} />
     </Button>
   )
 }

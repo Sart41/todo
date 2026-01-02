@@ -1,25 +1,27 @@
-import { ClearTodos } from "@/features/clear-todos"
 import clsx from "clsx"
+import {memo, useContext} from "react";
+import {ClearTodos} from "@/features/clear-todos"
+import {DataContext} from "@/entities/todo";
+
 import styles from './TodoInfo.module.scss'
 
-export const TodoInfo = (props) => {
+export const TodoInfo = memo(() => {
 
   const {
-    total,
-    completed,
-    onClearTodos
-  } = props
+    totalCount,
+    completedCount,
+  } = useContext(DataContext)
+
+  const statsText = `Задачи в процессе выполнения ${completedCount} / ${totalCount}`
 
   return (
-    <div className={clsx(styles.root)}>
-      <div className={clsx(styles.info)}>Задачи в процессе выполнения <span>{completed} / {total}</span></div>
+    <section className={clsx(styles.root)}>
+      <div className={clsx(styles.info)}><span>{statsText}</span>
+      </div>
 
-      {total > 0 && 
-      <ClearTodos 
-      className={clsx(styles.button)}
-      onClearTodos={onClearTodos} 
-      
-      />}
-    </div>
+      <ClearTodos
+        className={clsx(styles.button)}
+      />
+    </section>
   )
-}
+})

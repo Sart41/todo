@@ -1,6 +1,7 @@
+import {useEffect} from 'react'
 import clsx from 'clsx'
+
 import styles from './Modal.module.scss'
-import { useEffect } from 'react'
 
 export const Modal = (props) => {
   const {
@@ -25,9 +26,9 @@ export const Modal = (props) => {
 
   return (
     <div
-     className={clsx(styles.overlay)}
-     onClick={onClose}
-     >
+      className={clsx(styles.overlay)}
+      onClick={onClose}
+    >
       <div
         className={clsx(styles.modal)}
         onClick={(e) => e.stopPropagation()}

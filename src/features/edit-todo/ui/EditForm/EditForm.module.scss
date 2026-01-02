@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 16px;
+  width: 100%;
+}
+
+.input {
+  flex: 1 1 auto;
+  border: none;
+}
+
+.actions {
+  display: flex;
+  column-gap: 8px;
+}

@@ -1,7 +1,8 @@
 import clsx from "clsx"
 import styles from "./Button.module.scss"
+import {memo} from "react";
 
-export const Button = (props) => {
+export const Button = memo((props) => {
   const {
     className,
     type = 'button',
@@ -24,5 +25,5 @@ export const Button = (props) => {
       {children}
     </button>
   )
-}
+})
 

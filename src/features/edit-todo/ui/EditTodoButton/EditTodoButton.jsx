@@ -1,13 +1,13 @@
-
-import { useState } from 'react'
-import styles from './RenameTodoButton.module.scss'
+import {useState} from 'react'
 import clsx from 'clsx'
-import { Button } from '@/shared/ui/Button'
-import { EditIcon } from '@/shared/ui/icons'
-import { RenameTodoDialog } from '@/features/rename-todo'
-import { Modal } from '@/shared/ui/modal'
+import {Button} from '@/shared/ui/Button'
+import {EditIcon} from '@/shared/ui/icons'
+import {RenameTodoDialog} from '@/features/edit-todo'
+import {Modal} from '@/shared/ui/modal'
 
-export const RenameTodoButton = (props) => {
+import styles from './EditTodoButton.module.scss'
+
+export const EditTodoButton = (props) => {
 
   const {
     id,
@@ -35,7 +35,7 @@ export const RenameTodoButton = (props) => {
         aria-label='Изменить задачу'
       >
         <EditIcon size={24} />
-      </Button >
+      </Button>
 
 
       {isOpen && (

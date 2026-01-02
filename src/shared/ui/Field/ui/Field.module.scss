@@ -43,21 +43,28 @@
   }
 }
 
-.inputWrapper{
+.inputWrapper {
   position: relative;
 }
 
-.errorContainer{
+.errorContainer {
   display: flex;
   align-items: center;
   column-gap: 4px;
 }
-.field.error input {
+
+.hasError input {
   border-color: var(--color-danger);
+
+  &:focus {
+    border-color: var(--color-danger);
+  }
 }
+
 .errorIcon {
   flex-shrink: 0;
 }
+
 .errorMessage {
   min-height: 24px;
   font-size: 14px;
