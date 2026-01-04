@@ -3,7 +3,8 @@ export const todoStorage = {
     try {
       const raw = localStorage.getItem('todos')
       return raw ? JSON.parse(raw) : []
-    } catch {
+    } catch (error) {
+      console.error('Failed to load todos from storage', error);
       return []
     }
   },

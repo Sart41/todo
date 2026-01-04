@@ -1,6 +1,7 @@
 import {memo, useState} from "react";
 import clsx from "clsx"
 import styles from "./TodoItem.module.scss"
+import {Modal} from "@/shared/ui/modal";
 import {EditForm} from "@/features/edit-todo";
 
 export const TodoItem = memo((props) => {
@@ -32,19 +33,38 @@ export const TodoItem = memo((props) => {
     >
       {statusSlot}
 
+      {/*{isEditing*/}
+      {/*  ? (<EditForm*/}
+      {/*      initialTitle={title}*/}
+      {/*      onCancel={cancelEdit}*/}
+      {/*      onSubmit={handleSubmit}*/}
+      {/*    />*/}
+      {/*  ) : <p className={styles.title}>{title}</p>}*/}
+
+
+      <Modal
+        isOpen={isEditing}
+        onClose={cancelEdit}
+        title="Правка задачи"
+      >
+        <EditForm
+          onCancel={cancelEdit}
+          onSubmit={handleSubmit}
+          initialTitle={title}
+        />
+      </Modal>
+
+
+      <p className={styles.title}>{title}</p>
+
       {isEditing
-        ? (<EditForm
-            initialTitle={title}
-            onCancel={cancelEdit}
-            onSubmit={handleSubmit}
-          />
-        ) : <p className={styles.title}>{title}</p>}
-
-
-      <div className={styles.actions}>
-        {!isEditing && actionsSlot({onEdit: toggleEdit, isEditing})}
-      </div>
-
+        ? null
+        : (
+          <div className={styles.actions}>
+            {actionsSlot({onEdit: toggleEdit, isEditing})}
+          </div>
+        )
+      }
     </div>
   )
 })

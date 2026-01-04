@@ -5,7 +5,7 @@ import {TodoInfo} from '@/widgets/todo-info'
 import {TodoFilter} from '@/features/filter-todo'
 import {AddTodo} from '@/features/add-todo/ui/AddTodo'
 
-import {DataContext} from "@/entities/todo";
+import {ActionsContext, DataContext} from "@/entities/todo";
 import styles from "./TodosPage.module.scss"
 
 
@@ -19,10 +19,11 @@ export const TodosPage = () => {
   //   renameTodo,
   // } = useTodos();
 
-  const {totalCount, newTodoInputRef} = useContext(DataContext);
+  const {totalCount} = useContext(DataContext);
+  const {newTodoInputRef} = useContext(ActionsContext)
 
   useEffect(() => {
-    // newTodoInputRef.current.focus()
+    newTodoInputRef.current?.focus()
   }, [])
 
   return (
@@ -31,21 +32,13 @@ export const TodosPage = () => {
         <h1 className={clsx(styles.title)}>hello</h1>
         <div className={clsx(styles.content)}>
 
-          {/*<TodoProvider>*/}
-
-          <AddTodo
-            // onAddTodo={addTodo}
-            // newTodoInputRef={newTodoInputRef}
-          />
+          <AddTodo />
 
           {totalCount > 0 && <TodoFilter />}
 
           {totalCount > 0 && <TodoInfo />}
 
           <TodoList />
-
-          {/*</TodoProvider>*/}
-
 
         </div>
       </div>

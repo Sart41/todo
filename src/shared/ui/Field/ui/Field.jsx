@@ -1,8 +1,7 @@
 import clsx from "clsx"
 import styles from "./Field.module.scss"
-import {forwardRef} from "react";
 
-export const Field = forwardRef((props, ref) => {
+export const Field = (props) => {
 
   const {
     className = '',
@@ -12,6 +11,7 @@ export const Field = forwardRef((props, ref) => {
     value,
     autoFocus = false,
     placeholder = ' ',
+    ref,
     error,
     onChange,
     onKeyDown,
@@ -64,4 +64,4 @@ export const Field = forwardRef((props, ref) => {
       </div>
     </div>
   )
-})
+}

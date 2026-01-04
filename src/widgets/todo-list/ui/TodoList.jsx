@@ -1,10 +1,11 @@
 import clsx from "clsx"
 import {useContext, useEffect, useRef} from "react"
 import {ActionsContext, DataContext, TodoItem} from "@/entities/todo";
-import {EditButton} from "@/features/edit-todo";
 import {DeleteTodo} from "@/features/delete-todo";
 import {ToggleTodo} from "@/features/toggle-todo";
 import {EmptyState} from "@/shared/ui/EmptyState";
+import {EditIcon} from "@/shared/ui/icons";
+import {Button} from "@/shared/ui/Button";
 
 import styles from './TodoList.module.scss'
 
@@ -69,10 +70,17 @@ export const TodoList = () => {
 
             actionsSlot={({onEdit, isEditing}) => (
               <>
-                <EditButton
+                <Button
                   onClick={onEdit}
                   disabled={isEditing}
-                />
+                  data-icon-only={true}
+                  aria-label='Изменить задачу'
+                >
+                  <EditIcon
+                    size={24}
+                    color='blue'
+                  />
+                </Button>
                 <DeleteTodo
                   id={todo.id}
                 />

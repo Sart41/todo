@@ -1,11 +1,9 @@
-import {Button} from "@/shared/ui/Button";
-import {TfiSave} from "react-icons/tfi";
-import clsx from "clsx";
-import {Field} from "@/shared/ui/Field";
 import {useEffect, useRef, useState} from "react";
-import styles from './EditForm.module.scss'
 import {useClickOutside} from "@/shared/lib/hooks/useClickOutside";
+import {TodoFormUI} from "@/shared/ui/todo-form";
+import {Button} from '@/shared/ui/Button'
 import {GiCancel} from "react-icons/gi";
+import {TfiSave} from "react-icons/tfi";
 
 export const EditForm = (props) => {
 
@@ -54,47 +52,38 @@ export const EditForm = (props) => {
   })
 
   return (
-    <form
-      ref={formRef}
-      className={clsx(styles.root)}
+    <TodoFormUI
+      fieldId={`edit-todo-${initialTitle}`}
+      value={title}
+      formRef={formRef}
+      inputRef={inputRef}
+      onChange={handleChange}
       onSubmit={handleSubmit}
-    >
+      onKeyDown={handleKeyDown}
+      error={error}
 
-      <Field
-        id="edit"
-        value={title}
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        ref={inputRef}
-        error={error}
-      />
+      actions={
+        <>
+          <Button data-icon-only='true'>
+            <GiCancel
+              size={24}
+              color="red"
+              aria-label='Отменить'
+              onClick={onCancel}
+            />
+          </Button>
 
-      <div className={styles.actions}>
-        <Button
-          type='button'
-          data-icon-only='true'
-          onClick={onCancel}
-          aria-label='Отменить'
-        >
-          <GiCancel
-            size={24}
-            color="red"
-          />
-        </Button>
-
-        <Button
-          type="submit"
-          data-icon-only='true'
-          aria-label='Сохранить'
-        >
-          <TfiSave
-            size={24}
-            color="#3b82f6"
-          />
-        </Button>
-
-      </div>
-
-    </form>
+          <Button data-icon-only='true'>
+            <TfiSave
+              size={24}
+              color='blue'
+              aria-label='Сохранить'
+              type='submit'
+              onClick={handleSubmit}
+            />
+          </Button>
+        </>
+      }
+    />
   )
 }

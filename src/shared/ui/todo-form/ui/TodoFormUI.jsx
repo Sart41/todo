@@ -1,46 +1,46 @@
 import clsx from "clsx";
+import {Field} from '@/shared/ui/Field'
+
 import styles from './TodoFormUI.module.scss'
-import { Field } from '@/shared/ui/Field'
-import { Button } from '@/shared/ui/Button'
 
 export const TodoFormUI = (props) => {
   const {
-    error,
-    disabled,
-    className,
-    fieldId,
-    fieldLabel,
     value,
-    buttonTitle,
-    autoFocus,
     onSubmit,
     onChange,
-    newTodoInputRef,
+    onKeyDown,
+    fieldId,
+    fieldLabel = '',
+    error,
+    className,
+    formRef,
+    inputRef,
+    actions,
   } = props
 
 
   return (
     <form
-      onSubmit={onSubmit}
       className={clsx(styles.root, className)}
+      onSubmit={onSubmit}
+      ref={formRef}
     >
 
       <Field
         id={fieldId}
         label={fieldLabel}
+        ref={inputRef}
         value={value}
-        autoFocus={autoFocus}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         error={error}
-        ref={newTodoInputRef}
       />
 
-      <Button
-        type='submit'
-        className={clsx(styles.button)}
-      >
-        {buttonTitle}
-      </Button>
+      {actions && (
+        <div className={styles.actions}>
+          {actions}
+        </div>
+      )}
     </form>
   )
 }

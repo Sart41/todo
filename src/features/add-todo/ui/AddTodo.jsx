@@ -1,7 +1,7 @@
 import {TodoFormUI} from '@/shared/ui/todo-form'
-import clsx from 'clsx'
 import {memo, useContext, useState} from 'react'
 import {ActionsContext} from "@/entities/todo";
+import {Button} from "@/shared/ui/Button";
 
 import styles from './AddTodo.module.scss'
 
@@ -36,19 +36,26 @@ export const AddTodo = memo((props) => {
   }
 
   return (
-    <div className={clsx(styles.root)}>
+    <div className={styles.root}>
 
       <TodoFormUI
         error={error}
         disabled={isEmptyTitle}
-        className={clsx(styles.form)}
         value={title}
         fieldId='new-todo'
         fieldLabel='Новая задача'
-        buttonTitle='Добавить'
         onChange={handleChange}
         onSubmit={handleSubmit}
-        newTodoInputRef={newTodoInputRef}
+        inputRef={newTodoInputRef}
+
+        actions={
+          <Button
+            type='submit'
+            onClick={handleSubmit}
+          >
+            Добавить
+          </Button>
+        }
       />
     </div>
   )
