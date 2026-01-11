@@ -22,7 +22,18 @@ export const TodosPage = () => {
 
           <Header />
 
-          <AddTodo />
+          <div
+            className={clsx(styles.addTodoWrapper)}
+          >
+            <div className={styles.desktopVersion}>
+              <AddTodo />
+            </div>
+
+            <div className={styles.mobileVersion}>
+              <AddTodoMobile />
+            </div>
+          </div>
+
 
           {totalCount > 0 && <TodoFilter />}
 
@@ -30,7 +41,7 @@ export const TodosPage = () => {
 
           <TodoList />
 
-          <AddTodoMobile />
+          <div className={styles.bottomSpacer} />
 
         </div>
       </div>

@@ -6,8 +6,9 @@
 
   gap: 16px;
 
-  @media (width <=492px) {
+  @media (width <=575.98px) {
     flex-direction: column;
+    row-gap: 24px;
   }
 }
 

@@ -14,7 +14,13 @@ export const ConfirmAction = (props) => {
     <div className={styles.root}>
       <p>{message}</p>
       <div className={styles.buttons}>
-        <Button onClick={onCancel}>{cancelText}</Button>
+        <Button
+          onClick={onCancel}
+          variant='primary'
+        >
+          {cancelText}
+        </Button>
+
         <Button
           onClick={onConfirm}
           variant="danger"

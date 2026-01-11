@@ -31,3 +31,35 @@
   border-radius: 8px;
   overflow: hidden;
 }
+
+.addTodoWrapper {
+  position: relative;
+}
+
+.desktopVersion {
+  display: block;
+}
+
+.mobileVersion {
+  display: none;
+}
+
+.bottomSpacer {
+  display: none;
+}
+
+@media (width <= 767.98px) {
+  .desktopVersion {
+    display: none;
+  }
+
+  .mobileVersion {
+    display: block;
+  }
+
+  .bottomSpacer {
+    display: block;
+    height: 100px;
+    pointer-events: none;
+  }
+}

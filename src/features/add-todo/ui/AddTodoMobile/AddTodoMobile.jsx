@@ -20,8 +20,9 @@ export const AddTodoMobile = () => {
     <>
       {/* Большая кнопка под палец */}
       <Button
-        variant="fab" // Например, Floating Action Button
+        variant="fab"
         className={styles.fab}
+        aria-label="Добавить задачу"
         onClick={() => setIsOpen(true)}
       >
         +
@@ -31,6 +32,7 @@ export const AddTodoMobile = () => {
         <Modal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
+          title='Добавление задачи'
         >
           <TodoFormUI
             fieldId="mobile-add-todo"
@@ -39,7 +41,11 @@ export const AddTodoMobile = () => {
             onChange={handleChange}
             onSubmit={handleSubmit}
             onCancel={() => setIsOpen(false)}
-            actions={<Button type="submit">Добавить</Button>}
+            actions={
+              <Button
+                type="submit"
+                variant='primary'
+              >Добавить</Button>}
           />
         </Modal>
       )}

@@ -95,11 +95,12 @@
 
 /* Danger: Для удаления */
 .danger {
-  background-color: transparent;
-  color: var(--status-error);
+  background-color: var(--status-error);
+  color: #ffffff;
 
   &:hover:not(:disabled) {
-    background-color: color-mix(in srgb, var(--status-error), transparent 90%);
+    //    background-color: color-mix(in srgb, var(--status-error), transparent 90%);
+    opacity: 1;
   }
 }
 

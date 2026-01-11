@@ -1,25 +1,11 @@
-//.root {
-//  list-style: none;
-//  display: flex;
-//  flex-direction: column;
-//  gap: 16px 0;
-//  padding-inline: 16px;
-//  overflow: auto;
-//}
-//
-//.editIcon {
-//  color: var(--text-primary);
-//
-//  &:hover {
-//    color: var(--accent);
-//  }
-//}
-
-
 .root {
   padding-block-end: 24px;
   padding-inline: 16px;
   overflow: auto;
+  
+  @media (max-width: 768px) {
+    padding-bottom: 100px;
+  }
 }
 
 .list {
@@ -34,68 +20,3 @@
   max-width: 100%;
   overflow: auto;
 }
-
-//.editIcon {
-//  @media (hover: hover) {
-//    &:hover:not(:disabled) {
-//      color: var(--accent);
-//      background-color: color-mix(in srgb, var(--status-error), transparent 90%);
-//    }
-//  }
-//
-//  @media (hover: none) {
-//    color: var(--accent);
-//  }
-//
-//}
-
-/*
-.actionBtnBase {
-  appearance: none;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-
-
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: background-color 0.2s, color 0.2s, scale 0.1s;
-
-  &:active {
-    scale: 0.95;
-  }
-
-  @media (width >=675.98px) {
-    color: var(--text-secondary);
-  }
-
-}
-
-
-.editIcon {
-  composes: actionBtnBase;
-
-  @media (hover: hover) {
-    &:hover:not(:disabled) {
-      color: var(--accent);
-      background-color: color-mix(in srgb, var(--accent), transparent 90%);
-    }
-  }
-}
-
-.deleteIcon {
-  composes: actionBtnBase;
-
-  @media (hover: hover) {
-    &:hover {
-      color: var(--status-error);
-      background-color: color-mix(in srgb, var(--status-error), transparent 90%);
-    }
-  }
-}*/
