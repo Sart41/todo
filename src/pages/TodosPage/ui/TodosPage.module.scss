@@ -5,8 +5,7 @@
   display: flex;
   justify-content: center;
 
-  background: #dec9ab;
-  background: linear-gradient(5deg, rgba(222, 201, 171, 1) 11%, rgba(113, 197, 101, 1) 100%, rgba(84, 196, 82, 1) 58%, rgba(250, 225, 187, 1) 100%);
+  background: var(--bg-app);
 }
 
 
@@ -15,10 +14,10 @@
   flex-direction: column;
   row-gap: calcValue(0, 24, 344, 767);
   max-height: 80vh;
-  padding-inline: var(--container-padding-x);
+  //  padding-inline: var(--container-padding-x);
 
   @media (width <= 474.98px) {
-    max-height: 95dvh;
+    max-height: 100svh;
   }
 }
 
@@ -26,9 +25,9 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: calcValue(16,24, 500) 0;
-  background-color: #fff;
-  padding-block: 36px;
+  gap: calcValue(16, 24, 500) 0;
+  background-color: var(--bg-panel);
+  //  padding-block: 36px;
   border-radius: 8px;
   overflow: hidden;
 }

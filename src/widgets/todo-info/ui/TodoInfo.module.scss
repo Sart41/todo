@@ -4,10 +4,9 @@
   justify-content: space-between;
   gap: 16px;
   padding-inline: 16px;
-  padding-block-end: 16px;
-  border-bottom: 2px solid var(--color-gray-2);
+  //  border-bottom: 2px solid var(--border-color);
 }
 
-.button{
+.button {
   background-color: var(--color-primary);
 }

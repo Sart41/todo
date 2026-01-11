@@ -1,1 +1,1 @@
-export { todoStorage } from './todoStorage/todoStorage.js'
+export {browserStorage} from './browser-storage/browserStorage.js'

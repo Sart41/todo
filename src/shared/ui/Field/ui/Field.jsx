@@ -1,67 +1,64 @@
 import clsx from "clsx"
 import styles from "./Field.module.scss"
+import {useId} from "react";
 
 export const Field = (props) => {
 
   const {
     className = '',
-    id,
     label,
     type = 'text',
     value,
-    autoFocus = false,
     placeholder = ' ',
+    autoFocus,
     ref,
     error,
     onChange,
     onKeyDown,
-    onBlur,
+    id: externalId,
     ...rest
   } = props
 
-  const errorId = `${id}-error`
+  const generatedId = useId();
+  const id = externalId || generatedId;
+  const errorId = `${id}-error`;
 
   return (
-    <div
-      className={clsx(styles.field, className,
-        {[styles.hasError]: !!error}
-      )}
-    >
+    <div className={clsx(styles.field, className)}>
       <div className={styles.inputWrapper}>
 
         <input
           {...rest}
+          className={clsx(styles.input, {[styles.hasError]: !!error})}
           id={id}
           ref={ref}
           type={type}
           value={value}
           placeholder={placeholder}
-          autoFocus={autoFocus}
           autoComplete="off"
+          autoFocus={autoFocus}
           onChange={onChange}
           onKeyDown={onKeyDown}
-          onBlur={onBlur}
 
           aria-invalid={!!error}
           aria-describedby={error ? errorId : undefined}
         />
 
-        {label && (<label htmlFor={id}>
+        {label && (<label
+          className={styles.label}
+          htmlFor={id}
+        >
           {label}
         </label>)}
       </div>
 
-      <div className={styles.errorMessage}>
-        {error && (
-          <div className={styles.errorContainer}>
-            <p
-              id={errorId}
-              className={styles.error}
-              role="alert"
-            >{error}</p>
-          </div>
-        )}
-      </div>
+      <p
+        id={errorId}
+        className={clsx(styles.error, {[styles.visible]: !!error})}
+        role="alert"
+      >
+        {error}
+      </p>
     </div>
   )
 }

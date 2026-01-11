@@ -20,6 +20,7 @@ export const ClearTodos = (props) => {
       <Button
         aria-label="Очистить список"
         onClick={() => setIsModalOpen(true)}
+        variant="primary"
       >
         Удалить все
       </Button>

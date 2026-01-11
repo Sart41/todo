@@ -1,0 +1,90 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--input-height);
+  background: var(--bg-element);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  user-select: none;
+
+  isolation: isolate;
+  touch-action: manipulation;
+
+  &.size-md {
+    height: var(--input-height);
+
+    .buttom {
+      font-size: 14px;
+      padding: 0 16px;
+    }
+  }
+
+  &.size-sm {
+    --input-height: 32px;
+
+    .button {
+      font-size: 13px;
+      padding: 0 12px;
+    }
+  }
+}
+
+
+.activeIndicator {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 0;
+  background: var(--bg-panel);
+  border-radius: calc(var(--radius-sm) - 2px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.button {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  height: 100%;
+  padding: 0 16px;
+  border: none;
+  background: transparent !important;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover:not([aria-checked="true"]) {
+    @media (hover: hover) {
+      color: var(--text-primary);
+    }
+  }
+
+  &[aria-checked="true"] {
+    color: var(--accent);
+    cursor: default;
+  }
+
+  &:focus-visible {
+    border-radius: 6px;
+    box-shadow: 0 0 0 2px var(--bg-panel), 0 0 0 4px var(--accent);
+    z-index: 10;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .activeIndicator,
+    .button {
+      transition: none !important;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import {createContext, useMemo, useRef} from "react";
+import {createContext, useMemo} from "react";
 import {useTodos} from "@/entities/todo";
 
 export const DataContext = createContext(null)
@@ -23,10 +23,6 @@ export const TodoProvider = (props) => {
     setFilter,
   } = useTodos()
 
-
-  const newTodoInputRef = useRef(null)
-
-
   const data = useMemo(() => ({
     totalCount,
     completedCount,
@@ -47,7 +43,6 @@ export const TodoProvider = (props) => {
     clearTodos,
     renameTodo,
     setFilter,
-    newTodoInputRef,
   }), [
     addTodo,
     deleteTodo,
@@ -55,7 +50,6 @@ export const TodoProvider = (props) => {
     clearTodos,
     renameTodo,
     setFilter,
-    newTodoInputRef,
   ])
 
   return (

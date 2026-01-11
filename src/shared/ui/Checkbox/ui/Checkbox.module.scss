@@ -1,0 +1,55 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.box {
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-panel);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+
+  --icon-color: var(--accent);
+
+  &:hover {
+    border-color: var(--accent);
+    background-color: color-mix(in srgb, var(--bg-panel), var(--accent) 5%);
+  }
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: var(--icon-color);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+.input:checked + .box {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  --icon-color: #ffffff;
+
+  .icon {
+    stroke-dashoffset: 0;
+  }
+}
+
+.input:focus-visible + .box {
+  box-shadow: 0 0 0 2px var(--bg-panel), 0 0 0 4px var(--accent);
+}

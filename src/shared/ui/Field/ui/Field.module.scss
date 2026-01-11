@@ -2,71 +2,85 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  row-gap: 4px;
   flex-grow: 1;
   width: 100%;
+  color: var(--text-primary);
 
   &:has(input:not(:placeholder-shown)) label,
   &:has(input:focus) label {
     scale: 0.7;
     translate: -1.75em -2.6em;
-  }
-
-  & label {
-    position: absolute;
-    top: 50%;
-    left: 17px;
-    translate: 0 -50%;
-
-    transition: scale 0.2s, translate 0.2s;
-  }
-
-  & input {
-    --fieldInputPaddingX: 16px;
-
-    width: 100%;
-    height: var(--input-height);
-    padding-inline: var(--fieldInputPaddingX);
-    background-color: transparent;
-    border: var(--border);
-    border-radius: var(--border-radius);
-
-    &:hover,
-    &:focus {
-      border-color: var(--color-dark);
-    }
-
-    &:focus {
-      background-color: var(--color-gray-1);
-      outline: none;
-    }
+    color: var(--accent);
   }
 }
 
 .inputWrapper {
   position: relative;
-}
-
-.errorContainer {
   display: flex;
-  align-items: center;
-  column-gap: 4px;
 }
 
-.hasError input {
-  border-color: var(--color-danger);
+.label {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  translate: 0 -50%;
+  pointer-events: none;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.input {
+  --fieldInputPaddingX: 16px;
+  width: 100%;
+
+  height: var(--input-height);
+  padding-inline: var(--fieldInputPaddingX);
+  background-color: var(--bg-element);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: inherit;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &:hover:not(:disabled):not(:focus) {
+    background: color-mix(in srgb, var(--bg-element), var(--text-primary) 3%);
+    border-color: rgba(0, 0, 0, 0.05);
+  }
 
   &:focus {
-    border-color: var(--color-danger);
+    background: var(--bg-panel); // При фокусе поле "всплывает" (становится белым/светлым)
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-faded); // Мягкое свечение (используем нашу переменную!)
+  }
+
+  &.hasError {
+    border-color: var(--status-error);
+    background: var(--bg-panel);
+
+    & + .label {
+      color: var(--status-error);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+    }
   }
 }
 
-.errorIcon {
-  flex-shrink: 0;
-}
+.error {
+  position: absolute;
+  top: 100%;
+  left: 4px;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--status-error);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.2s ease;
+  pointer-events: none;
 
-.errorMessage {
-  min-height: 24px;
-  font-size: 14px;
-  color: var(--color-danger);
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

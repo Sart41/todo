@@ -1,6 +1,19 @@
 .root {
-  color: #e53935;
+  color: var(--text-primary);
 
   border: none;
   background-color: transparent;
+  transition: color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      color: var(--status-error);
+      background-color: color-mix(in srgb, var(--status-error), transparent 90%);
+    }
+  }
+
+  @media (hover: none) {
+    color: var(--status-error);
+  }
 }
+

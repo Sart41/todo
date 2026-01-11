@@ -1,7 +1,7 @@
 @use '@/shared/styles/functions' as *;
 @use '@/shared/styles/mixins' as *;
 
-html,body{
+html, body {
   height: 100%;
   overflow: hidden;
 }
@@ -10,11 +10,24 @@ body {
   font: var(--base-font-weight) var(--base-font-size) / var(--base-line-height) var(--base-font-family);
 }
 
+body {
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html, body {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
 .container {
   width: 100%;
   max-width: calc(var(--container-width) + calc(var(--container-padding-x) * 2));
   margin-inline: auto;
-  padding-inline: 16px;
+  //  padding-inline: 16px;
 
   &--small {
     --container-width: 1088px;

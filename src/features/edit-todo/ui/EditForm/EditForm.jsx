@@ -1,37 +1,34 @@
-import {useEffect, useRef, useState} from "react";
-import {useClickOutside} from "@/shared/lib/hooks/useClickOutside";
+import {useContext, useState} from "react";
 import {TodoFormUI} from "@/shared/ui/todo-form";
 import {Button} from '@/shared/ui/Button'
 import {GiCancel} from "react-icons/gi";
 import {TfiSave} from "react-icons/tfi";
+import {ActionsContext} from "@/entities/todo";
+import {validateTodoTitle} from "@/shared/lib/validation/validateTodoTitle";
 
 export const EditForm = (props) => {
 
   const {
+    todoId,
     initialTitle = "",
     onSubmit,
     onCancel
   } = props;
 
+  const {renameTodo} = useContext(ActionsContext);
+
   const [title, setTitle] = useState(initialTitle);
   const [error, setError] = useState(null);
-  const inputRef = useRef(null);
-  const formRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus()
-  }, [])
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    const trimmedTitle = (title || '').trim()
-    if (!trimmedTitle) {
-      setTitle("")
-      setError('Задача не может быть пустой')
-      inputRef.current?.focus()
+    event?.preventDefault()
+    const validationErrors = validateTodoTitle(title)
+    if (validationErrors) {
+      setError(validationErrors)
       return
     }
-    onSubmit(trimmedTitle)
+    renameTodo(todoId, title.trim())
+    onSubmit?.()
   }
 
   const handleChange = (event) => {
@@ -39,47 +36,43 @@ export const EditForm = (props) => {
     setTitle(event.target.value);
   }
 
-  const handleKeyDown = (event) => {
-    if (event.key === 'Escape') {
-      onCancel()
-    }
-  }
-  useClickOutside(formRef, () => {
+  const handleCancel = () => {
     const trimmedTitle = title.trim()
     if (trimmedTitle && trimmedTitle !== initialTitle) {
-      onSubmit(trimmedTitle)
-    } else onCancel()
-  })
+      handleSubmit()
+    } else onCancel?.()
+  }
 
   return (
     <TodoFormUI
-      fieldId={`edit-todo-${initialTitle}`}
+      fieldId={`edit-todo-${todoId}`}
       value={title}
-      formRef={formRef}
-      inputRef={inputRef}
       onChange={handleChange}
       onSubmit={handleSubmit}
-      onKeyDown={handleKeyDown}
+      onCancel={handleCancel}
       error={error}
 
       actions={
         <>
-          <Button data-icon-only='true'>
+          <Button
+            aria-label='Отменить'
+            iconOnly
+            onClick={onCancel}
+          >
             <GiCancel
               size={24}
-              color="red"
-              aria-label='Отменить'
-              onClick={onCancel}
+              color='var(--status-error)'
             />
           </Button>
 
-          <Button data-icon-only='true'>
+          <Button
+            aria-label='Сохранить'
+            type='submit'
+            iconOnly
+          >
             <TfiSave
               size={24}
-              color='blue'
-              aria-label='Сохранить'
-              type='submit'
-              onClick={handleSubmit}
+              color='var(--accent)'
             />
           </Button>
         </>

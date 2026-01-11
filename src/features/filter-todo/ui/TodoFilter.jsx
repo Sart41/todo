@@ -1,8 +1,9 @@
-import {Button} from '@/shared/ui/Button'
 import {clsx} from 'clsx'
 import {memo, useContext} from "react";
-import styles from './TodoFilter.module.scss'
 import {ActionsContext, DataContext} from "@/entities/todo";
+import {SegmentedControl} from "@/shared/ui/SegmentedControl";
+
+import styles from './TodoFilter.module.scss'
 
 
 export const TodoFilter = memo((props) => {
@@ -15,28 +16,26 @@ export const TodoFilter = memo((props) => {
   } = useContext(ActionsContext)
 
   const FILTERS = [
-    {id: 'all', label: 'Все'},
-    {id: 'completed', label: 'Выполненные'},
-    {id: 'active', label: 'Активные'},
+    {value: 'all', label: 'Все'},
+    {value: 'completed', label: 'Выполненные'},
+    {value: 'active', label: 'Активные'},
   ]
 
+
   return (
-    <div className={clsx(styles.root)}>
+    <section className={clsx(styles.root)}>
       <span>Отобразить</span>
       <div className={clsx(styles.actions)}>
 
-        {FILTERS.map(({id, label}) => (
-          <Button
-            key={id}
-            type="button"
-            onClick={() => setFilter(id)}
-            isActive={filter === id}
-          >
-            {label}
-          </Button>
-        ))}
+        <SegmentedControl
+          name={filter}
+          options={FILTERS}
+          value={filter}
+          onChange={setFilter}
+          size='sm'
+        />
 
       </div>
-    </div>
+    </section>
   )
 })

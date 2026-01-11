@@ -12,9 +12,10 @@
 }
 
 .content {
-  background: var(--bg-color, #fff);
+  color: var(--text-primary);
+  background: var(--bg-panel);
   border-radius: 12px;
-  padding: 24px;
+  padding: 24px 24px 36px 24px;
   position: relative;
   width: 100%;
   max-width: 500px;

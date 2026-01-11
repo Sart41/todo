@@ -1,9 +1,11 @@
 import {useCallback, useEffect, useMemo, useState} from "react";
-import {todoStorage} from "@/shared/lib";
+import {browserStorage} from "@/shared/lib";
 import {createTodo, toggleCompleted, updateTitle} from "../lib/todo";
 
+const KEY = 'todos';
+
 export const useTodos = () => {
-  const [todos, setTodos] = useState(() => todoStorage.load());
+  const [todos, setTodos] = useState(() => browserStorage.load(KEY, []));
   const [filter, setFilter] = useState('all')
 
   const totalCount = todos.length
@@ -14,13 +16,14 @@ export const useTodos = () => {
 
 
   useEffect(() => {
-    todoStorage.save(todos);
+    browserStorage.save(KEY, todos);
   }, [todos]);
 
   const addTodo = useCallback((title) => {
     const trimmedTitle = title.trim();
     if (!trimmedTitle) return;
-    setTodos(prev => [...prev, createTodo(trimmedTitle)]);
+    const normalizedTitle = title.replace(/\s+/g, ' ');
+    setTodos(prev => [...prev, createTodo(normalizedTitle)]);
   }, []);
 
   const deleteTodo = useCallback((id) => {

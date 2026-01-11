@@ -8,21 +8,21 @@
   gap: 16px;
   padding-inline: 16px;
   padding-block: 8px;
-  border-top: 2px solid var(--color-gray-2);
-  border-bottom: 2px solid var(--color-gray-2);
+  border-top: 2px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
 }
 
-.root span{
+.root span {
   @media (width <=492px) {
     display: none;
   }
 }
 
-.actions{
+.actions {
   display: flex;
   gap: calcValue(8, 16, 344, 676);
-  flex-wrap: wrap; 
-  
+  flex-wrap: wrap;
+
 
   @media (width <= 492px) {
     justify-content: space-between;

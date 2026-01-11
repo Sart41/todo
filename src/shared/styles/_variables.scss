@@ -1,37 +1,68 @@
 :root {
-  --color-primary: #c4e3a5;
-  --color-accent: #f7d794;
-  --accent-hover: #e89f71;
-  --color-white: #FFFFFF;
-  --color-black: #000000;
-  --color-danger: #FF4D4F;
-
-  --color-dark-1: #1E1E1E;
-  --color-dark-2: #2C2C2C;
-
-  --color-gray-1: #F5F5F5;
-  --color-gray-2: #D9D9D9;
-  --color-gray-3: #B3B3B3;
-  --color-gray-4: #757575;
-
-  --base-font-family: 'Roboto', sans-serif;
+  --base-font-family: 'Inter', 'Roboto', sans-serif;
   --base-font-weight: 400;
   --base-font-size: 16px;
   --base-line-height: 1.5;
 
-  --container-width: 670px;
   --container-padding-x: 16px;
-
+  --container-width: 670px;
   --header-height: 75px;
   --input-height: 44px;
-
-  --border-radius: 6px;
-  --border: 1px solid grey;
-
   --icon-size: 28px;
+
+  /* Базовые нейтральные тона (Light) */
+  --bg-app: #f5f7fa; /* Фон всей страницы */
+  --bg-panel: #ffffff; /* Фон карточек, модалок, панелей */
+  --bg-element: #edf0f3; /* Фон кнопок, инпутов (второстепенный) */
+
+  /* Текст */
+  --text-primary: #1a1d23; /* Заголовки, основной текст */
+  --text-secondary: #6b7280; /* Подписи, даты, второстепенное */
+  --text-on-accent: #ffffff; /* Текст на синих кнопках */
+
+  /* Акценты и состояния */
+  --accent: #3b82f6; /* Основной синий */
+  --accent-hover: #2563eb; /* Синий при наведении */
+  --border-color: #e5e7eb; /* Тонкие линии и границы */
+  --accent-soft: rgba(59, 130, 246, 0.12);
+
+  /* Статусы */
+  --status-success: #10b981;
+  --status-error: #ef4444;
+
+  /* Спецэффекты */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --radius-main: 12px; /* Скругление для всего */
+  --radius-sm: 8px; /* Скругление для кнопок */
 }
+
+[data-theme='dark'] {
+  /* Базовые нейтральные тона (Dark) */
+  --bg-app: #0f1115; /* Глубокий темный фон */
+  --bg-panel: #1a1d23; /* Карточки чуть светлее фона */
+  --bg-element: #2d333f; /* Кнопки внутри карточек */
+
+  /* Текст */
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-on-accent: #ffffff;
+
+  /* Акценты и состояния */
+  --accent: #60a5fa; /* Светлее для лучшей видимости в темноте */
+  --accent-hover: #93c5fd;
+  --border-color: #374151;
+  --accent-soft: rgba(96, 165, 250, 0.15);
+
+  /* Спецэффекты */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+}
+
 
 $laptops: 1023.98px;
 $tablets: 767.98px;
 $mobiles: 474.98px;
 $headerHeight: 75;
+
+

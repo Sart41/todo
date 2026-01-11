@@ -1,14 +1,16 @@
 import {TodosPage} from "@/pages/TodosPage"
 import {TodoProvider} from "@/entities/todo";
+import {SettingsProvider} from "@/entities/settings/model/SettingsContext";
 
 const App = () => {
 
   return (
-    <TodoProvider>
-      <TodosPage />
-    </TodoProvider>
+    <SettingsProvider>
+      <TodoProvider>
+        <TodosPage />
+      </TodoProvider>
+    </SettingsProvider>
   )
-
 }
 
 export default App

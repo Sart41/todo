@@ -1,69 +1,76 @@
-import {memo, useState} from "react";
+import {memo, useContext, useState} from "react";
 import clsx from "clsx"
-import styles from "./TodoItem.module.scss"
 import {Modal} from "@/shared/ui/modal";
 import {EditForm} from "@/features/edit-todo";
+import {SettingsContext} from "@/entities/settings";
+import {useEditTodo} from "@/features/edit-todo/model/useEditTodo";
+
+import styles from "./TodoItem.module.scss"
 
 export const TodoItem = memo((props) => {
   const {
     className,
-    isCompleted,
-    title,
-    onSafe,
+    todo,
     statusSlot,
     actionsSlot,
   } = props
 
+  const {
+    startEdit,
+    saveEdit
+  } = useEditTodo()
+
+  const {settings} = useContext(SettingsContext)
   const [isEditing, setIsEditing] = useState(false)
 
+
   const toggleEdit = () => {
+    // startEdit(todo.title)
     setIsEditing(true)
   }
+
   const cancelEdit = () => {
     setIsEditing(false)
   }
 
-  const handleSubmit = (newTitle) => {
-    cancelEdit()
-    onSafe(newTitle)
-  }
   return (
     <div
-      className={clsx(styles.root, {[styles.checked]: isCompleted}, className)}
+      className={clsx(styles.root, {[styles.checked]: todo.isCompleted}, className)}
     >
-      {statusSlot}
+      {!isEditing &&
+        (<div className={styles.status}>
+          {statusSlot}
+        </div>)
+      }
 
-      {/*{isEditing*/}
-      {/*  ? (<EditForm*/}
-      {/*      initialTitle={title}*/}
-      {/*      onCancel={cancelEdit}*/}
-      {/*      onSubmit={handleSubmit}*/}
-      {/*    />*/}
-      {/*  ) : <p className={styles.title}>{title}</p>}*/}
+      {isEditing && settings.editMode === 'inline' ? (<EditForm
+        todoId={todo.id}
+        initialTitle={todo.title}
+        onCancel={cancelEdit}
+        onSubmit={cancelEdit}
+      />) : (<p className={styles.title}>{todo.title}</p>)
+      }
 
+      {settings.editMode === 'modal' && (
+        <Modal
+          isOpen={isEditing}
+          onClose={cancelEdit}
+          title="Правка задачи"
+        >
+          <EditForm
+            todoId={todo.id}
+            initialTitle={todo.title}
+            onCancel={cancelEdit}
+            onSubmit={cancelEdit}
+          />
+        </Modal>)
+      }
 
-      <Modal
-        isOpen={isEditing}
-        onClose={cancelEdit}
-        title="Правка задачи"
-      >
-        <EditForm
-          onCancel={cancelEdit}
-          onSubmit={handleSubmit}
-          initialTitle={title}
-        />
-      </Modal>
-
-
-      <p className={styles.title}>{title}</p>
-
-      {isEditing
-        ? null
-        : (
-          <div className={styles.actions}>
-            {actionsSlot({onEdit: toggleEdit, isEditing})}
-          </div>
-        )
+      {(!isEditing || settings.editMode === 'modal') && (
+        <div className={styles.actions}>
+          {actionsSlot({onEdit: toggleEdit, isEditing})}
+        </div>
+      )
       }
     </div>
   )

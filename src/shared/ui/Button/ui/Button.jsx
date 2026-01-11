@@ -17,9 +17,10 @@ export const Button = memo((props) => {
   return (
     <button
       type={type}
-      data-active={isActive}
-      data-icon-only={iconOnly}
-      className={clsx(styles.root, className, styles[variant])}
+      className={clsx(styles.button, {
+        [styles.active]: isActive,
+        [styles.iconOnly]: iconOnly
+      }, styles[variant], className)}
       {...rest}
       onClick={onClick}
     >
