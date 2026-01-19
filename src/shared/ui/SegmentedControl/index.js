@@ -1,1 +1,1 @@
-export {SegmentedControl} from './ui/SegmentedControl'
+export {SegmentedControl} from './SegmentedControl'

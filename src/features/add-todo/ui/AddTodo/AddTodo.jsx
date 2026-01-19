@@ -1,4 +1,4 @@
-import {TodoFormUI} from '@/shared/ui/todo-form'
+import {BaseForm} from '@/shared/ui/BaseForm'
 import {memo} from 'react'
 import {Button} from "@/shared/ui/Button";
 import {useAddTodo} from "@/features/add-todo/model/useAddTodo";
@@ -17,7 +17,7 @@ export const AddTodo = memo((props) => {
   return (
     <section className={styles.root}>
 
-      <TodoFormUI
+      <BaseForm
         fieldId='new-todo'
         error={error}
         value={title}

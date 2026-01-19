@@ -1,53 +1,28 @@
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useEffect, useMemo, useReducer, useState} from "react";
 import {browserStorage} from "@/shared/lib";
-import {createTodo, toggleCompleted, updateTitle} from "../lib/todo";
+import {TODO_ACTIONS, todosReducer} from "@/entities/todo/model/todoReducer";
+import {normalizeTitle} from "@/entities/todo/model/todoUtils";
 
-const KEY = 'todos';
+const STORAGE_KEY = 'todos';
+
 
 export const useTodos = () => {
-  const [todos, setTodos] = useState(() => browserStorage.load(KEY, []));
+  const [todos, dispatch] = useReducer(todosReducer, browserStorage.load(STORAGE_KEY, []));
   const [filter, setFilter] = useState('all')
 
-  const totalCount = todos.length
-  const completedCount = useMemo(() => {
-      return todos.filter(({isCompleted}) => isCompleted).length
-    }, [todos]
-  )
+  const stats = useMemo(() => {
+    let completed = 0
 
+    for (const todo of todos) {
+      if (todo.isCompleted) completed++
+    }
 
-  useEffect(() => {
-    browserStorage.save(KEY, todos);
-  }, [todos]);
-
-  const addTodo = useCallback((title) => {
-    const trimmedTitle = title.trim();
-    if (!trimmedTitle) return;
-    const normalizedTitle = title.replace(/\s+/g, ' ');
-    setTodos(prev => [...prev, createTodo(normalizedTitle)]);
-  }, []);
-
-  const deleteTodo = useCallback((id) => {
-    setTodos(prev => prev.filter((t) => t.id !== id));
-  }, []);
-
-  const renameTodo = useCallback((id, newTitle) => {
-    setTodos(prev =>
-      prev.map(todo =>
-        todo.id === id ? updateTitle(todo, newTitle) : todo
-      )
-    );
-  }, []);
-
-  const toggleTodo = useCallback((id) => {
-    setTodos(prev =>
-      prev.map(todo =>
-        todo.id === id ? toggleCompleted(todo) : todo
-      ));
-  }, []);
-
-  const clearTodos = useCallback(() => {
-    setTodos([]);
-  }, []);
+    return {
+      total: todos.length,
+      completed,
+      active: todos.length - completed
+    }
+  }, [todos])
 
   const filteredTodos = useMemo(() => {
 
@@ -61,12 +36,50 @@ export const useTodos = () => {
     }
   }, [todos, filter]);
 
+  useEffect(() => {
+    browserStorage.save(STORAGE_KEY, todos);
+  }, [todos]);
+
+  const addTodo = useCallback((title) => {
+    const trimmedTitle = title.trim();
+    if (!trimmedTitle) return;
+    dispatch({
+      type: TODO_ACTIONS.ADD,
+      title: normalizeTitle(title)
+    });
+  }, []);
+
+  const deleteTodo = useCallback((id) => {
+    dispatch({
+      type: TODO_ACTIONS.DELETE,
+      id
+    })
+  }, []);
+
+  const renameTodo = useCallback((id, newTitle) => {
+    dispatch({
+      type: TODO_ACTIONS.RENAME,
+      id,
+      newTitle: normalizeTitle(newTitle)
+    })
+  }, []);
+
+  const toggleTodo = useCallback((id) => {
+    dispatch({
+      type: TODO_ACTIONS.TOGGLE,
+      id
+    })
+  }, []);
+
+  const clearTodos = useCallback(() => {
+    dispatch({type: TODO_ACTIONS.CLEAR})
+  }, []);
+
+
   return {
-    todos,
+    todos: filteredTodos,
     filter,
-    filteredTodos,
-    totalCount,
-    completedCount,
+    stats,
     addTodo,
     deleteTodo,
     toggleTodo,

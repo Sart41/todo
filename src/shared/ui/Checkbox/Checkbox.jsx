@@ -1,6 +1,7 @@
-import styles from './Checkbox.module.scss';
-import {useId} from "react";
 import clsx from "clsx";
+import {useId} from "react";
+
+import styles from './Checkbox.module.scss';
 
 export const Checkbox = (props) => {
   const {

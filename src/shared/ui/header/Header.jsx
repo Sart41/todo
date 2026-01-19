@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
 import clsx from "clsx";
-import {SettingsDrawer} from "@/widgets/SettingsDrawer/ui";
+import {SettingsDrawer} from "@/widgets/SettingsDrawer";
 
 export const Header = () => {
 

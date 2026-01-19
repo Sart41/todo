@@ -1,1 +1,1 @@
-export {browserStorage} from './browser-storage/browserStorage.js'
+export {browserStorage} from './browser-storage/browserStorage'

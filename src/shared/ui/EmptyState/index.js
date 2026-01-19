@@ -1,1 +1,1 @@
-export {EmptyState} from './ui/EmptyState.jsx';
+export {EmptyState} from './EmptyState.jsx';

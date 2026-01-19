@@ -6,7 +6,8 @@
   transition: color 0.2s ease;
 
   @media (hover: hover) {
-    &:hover:not(:disabled) {
+    &:hover:not(:disabled),
+    &:focus-visible {
       color: var(--accent);
       background-color: color-mix(in srgb, var(--accent), transparent 90%);
     }

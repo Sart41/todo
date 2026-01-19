@@ -8,11 +8,10 @@ import styles from './TodoInfo.module.scss'
 export const TodoInfo = memo(() => {
 
   const {
-    totalCount,
-    completedCount,
+    stats
   } = useContext(DataContext)
 
-  const statsText = `Задачи в процессе выполнения ${completedCount} / ${totalCount}`
+  const statsText = `Задачи в процессе выполнения ${stats.completed} / ${stats.total}`
 
   return (
     <section className={clsx(styles.root)}>

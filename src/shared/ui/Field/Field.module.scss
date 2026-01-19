@@ -48,9 +48,9 @@
   }
 
   &:focus {
-    background: var(--bg-panel); // При фокусе поле "всплывает" (становится белым/светлым)
+    background: var(--bg-panel);
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-faded); // Мягкое свечение (используем нашу переменную!)
+    box-shadow: 0 0 0 3px var(--accent-faded);
   }
 
   &.hasError {

@@ -1,9 +1,9 @@
-import {memo, useContext, useState} from "react";
 import clsx from "clsx"
+import {memo, useContext, useState} from "react";
 import {Modal} from "@/shared/ui/modal";
 import {EditForm} from "@/features/edit-todo";
-import {SettingsContext} from "@/entities/settings";
-import {useEditTodo} from "@/features/edit-todo/model/useEditTodo";
+import {SettingsContexts} from "@/entities/settings";
+import {MobileDropdown} from "@/shared/ui/mobile-dropdown/MobileDropdown";
 
 import styles from "./TodoItem.module.scss"
 
@@ -15,17 +15,11 @@ export const TodoItem = memo((props) => {
     actionsSlot,
   } = props
 
-  const {
-    startEdit,
-    saveEdit
-  } = useEditTodo()
-
-  const {settings} = useContext(SettingsContext)
+  const {settings} = useContext(SettingsContexts)
   const [isEditing, setIsEditing] = useState(false)
 
 
   const toggleEdit = () => {
-    // startEdit(todo.title)
     setIsEditing(true)
   }
 
@@ -68,9 +62,17 @@ export const TodoItem = memo((props) => {
 
       {(!isEditing || settings.editMode === 'modal') && (
         <div className={styles.actions}>
-          {actionsSlot({onEdit: toggleEdit, isEditing})}
-        </div>
-      )
+          <div className={styles.actionsDesktop}>
+            {actionsSlot({onEdit: toggleEdit, isEditing})}
+          </div>
+
+          <div className={styles.actionsMobile}>
+            <MobileDropdown>
+              {actionsSlot({onEdit: toggleEdit, isEditing})}
+            </MobileDropdown>
+          </div>
+
+        </div>)
       }
     </div>
   )

@@ -1,6 +1,6 @@
 import clsx from "clsx"
-import styles from "./Button.module.scss"
 import {memo} from "react";
+import styles from "./Button.module.scss"
 
 export const Button = memo((props) => {
   const {

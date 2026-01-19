@@ -3,15 +3,16 @@ import {DataContext} from "@/entities/todo";
 
 export const useTodoList = () => {
   const {
-    filteredTodos = [],
-    totalCount,
+    todos = [],
+    stats,
     filter,
   } = useContext(DataContext)
-  const prevCountRef = useRef(totalCount);
+
+  const prevCountRef = useRef(stats.total);
   const listRef = useRef(null);
 
   useEffect(() => {
-    if (totalCount > prevCountRef.current) {
+    if (stats.total > prevCountRef.current) {
 
       const listElement = listRef.current
 
@@ -22,11 +23,11 @@ export const useTodoList = () => {
         });
       }
     }
-    prevCountRef.current = totalCount;
-  }, [totalCount])
+    prevCountRef.current = stats.total;
+  }, [stats.total])
 
   return {
-    filteredTodos,
+    todos,
     filter,
     listRef
   };

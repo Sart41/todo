@@ -2,7 +2,7 @@ import {useState} from "react";
 import {useAddTodo} from './../../model/useAddTodo'
 import {Button} from "@/shared/ui/Button";
 import {Modal} from "@/shared/ui/modal";
-import {TodoFormUI} from "@/shared/ui/todo-form";
+import {BaseForm} from "@/shared/ui/BaseForm";
 
 import styles from './AddTodoMobile.module.scss'
 
@@ -18,9 +18,7 @@ export const AddTodoMobile = () => {
 
   return (
     <>
-      {/* Большая кнопка под палец */}
       <Button
-        variant="fab"
         className={styles.fab}
         aria-label="Добавить задачу"
         onClick={() => setIsOpen(true)}
@@ -34,7 +32,7 @@ export const AddTodoMobile = () => {
           onClose={() => setIsOpen(false)}
           title='Добавление задачи'
         >
-          <TodoFormUI
+          <BaseForm
             fieldId="mobile-add-todo"
             value={title}
             error={error}

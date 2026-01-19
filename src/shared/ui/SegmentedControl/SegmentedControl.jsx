@@ -1,15 +1,18 @@
 import clsx from "clsx";
-import {useCallback, useEffect, useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
+
 import styles from './SegmentedControl.module.scss'
 
-export const SegmentedControl = ({
-                                   options,
-                                   value,
-                                   onChange,
-                                   name,
-                                   size = 'md'
-                                 }) => {
-  const [indicatorStyle, setindicatorStyle] = useState({
+export const SegmentedControl = (props) => {
+  const {
+    options,
+    value,
+    onChange,
+    name,
+    size = 'md'
+  } = props
+
+  const [indicatorStyle, setIndicatorStyle] = useState({
     width: 0,
     transform: "translateX(0)"
   });
@@ -28,14 +31,14 @@ export const SegmentedControl = ({
       const width = buttonRect.width;
       const offsetLeft = buttonRect.left - containerRect.left;
 
-      setindicatorStyle({
+      setIndicatorStyle({
         width: `${width}px`,
         transform: `translateX(${offsetLeft}px)`
       })
     }
   }, [value, options]);
 
-  const handleKeyDown = useCallback((e, index) => {
+  const handleKeyDown = (e, index) => {
     let nextIndex = null;
     if (e.key === 'ArrowRight') {
       nextIndex = (index + 1) % options.length;
@@ -48,7 +51,7 @@ export const SegmentedControl = ({
       onChange(nextOption.value);
       buttonsRef.current[nextIndex]?.focus();
     }
-  })
+  }
 
   return (
     <div

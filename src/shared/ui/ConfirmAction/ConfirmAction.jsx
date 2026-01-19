@@ -1,5 +1,6 @@
-import styles from './ConfirmAction.module.scss';
 import {Button} from "@/shared/ui/Button";
+
+import styles from './ConfirmAction.module.scss';
 
 export const ConfirmAction = (props) => {
   const {

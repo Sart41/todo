@@ -1,1 +1,1 @@
-export {ConfirmAction} from "./ui/ConfirmAction.jsx";
+export {ConfirmAction} from "./ConfirmAction.jsx";

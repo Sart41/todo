@@ -1,28 +1,41 @@
 import {useContext, useState} from "react";
 import {ActionsContext} from "@/entities/todo";
+import {validateTodoTitle} from "@/shared/lib/validation/validateTodoTitle";
 
-export const useEditTodo = (todoId) => {
-  const {renameTodo} = useContext(ActionsContext)
-  const [isEditing, setIsEditing] = useState(false)
-  const [tempTitle, setTempTitle] = useState('')
+export const useEditTodo = (props) => {
+  const {todoId, initialTitle, onSubmit, onCancel} = props
 
+  const {renameTodo} = useContext(ActionsContext);
 
-  const startEdit = (initialTilte) => {
-    setTempTitle(initialTilte);
-    setIsEditing(true)
-  }
+  const [title, setTitle] = useState(initialTitle);
+  const [error, setError] = useState(null);
 
-  const saveEdit = (newTitle) => {
-    if (newTitle.trim()) {
-      renameTodo(todoId, newTitle.trim());
+  const handleSubmit = (event) => {
+    event?.preventDefault()
+    const validationErrors = validateTodoTitle(title)
+    if (validationErrors) {
+      setError(validationErrors)
+      return
     }
-    cancelEdit();
+    renameTodo(todoId, title.trim())
+    if (typeof onSubmit === 'function') onSubmit()
   }
 
-  const cancelEdit = () => {
-    setIsEditing(false)
-    setTempTitle('')
+  const handleCancel = () => {
+    const trimmedTitle = title.trim()
+    if (trimmedTitle && trimmedTitle !== initialTitle) {
+      handleSubmit()
+    } else onCancel?.()
   }
 
-  return {isEditing, tempTitle, cancelEdit, startEdit, saveEdit}
+  const handleChange = (event) => {
+    if (error) setError(null)
+    setTitle(event.target.value);
+  }
+
+  return {
+    title,
+    error,
+    handleSubmit, handleCancel, handleChange
+  }
 }

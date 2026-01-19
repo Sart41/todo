@@ -1,7 +1,7 @@
 import {createContext, useEffect, useMemo} from "react";
 import {useSettings} from "@/entities/settings/model/useSettings";
 
-export const SettingsContext = createContext({})
+export const SettingsContexts = createContext({})
 
 export const SettingsProvider = (props) => {
   const {
@@ -30,8 +30,8 @@ export const SettingsProvider = (props) => {
   ])
 
   return (
-    <SettingsContext.Provider value={value}>
+    <SettingsContexts.Provider value={value}>
       {children}
-    </SettingsContext.Provider>
+    </SettingsContexts.Provider>
   )
 }

@@ -1,19 +1,18 @@
-import {useContext} from "react";
 import clsx from 'clsx'
-import {TodoList} from '@/entities/todo-list'
+import {useContext} from "react";
 import {TodoInfo} from '@/widgets/todo-info'
-import {TodoFilter} from '@/features/filter-todo'
-import {AddTodo} from '@/features/add-todo/ui/AddTodo/AddTodo'
-import {ActionsContext, DataContext} from "@/entities/todo";
-import {Header} from "@/shared/ui/header";
 import {AddTodoMobile} from "@/features/add-todo";
+import {AddTodo} from '@/features/add-todo/'
+import {TodoFilter} from '@/features/filter-todo'
+import {DataContext} from "@/entities/todo";
+import {TodoList} from '@/entities/todo-list'
+import {Header} from "@/shared/ui/header";
 
 import styles from "./TodosPage.module.scss"
 
 export const TodosPage = () => {
 
-  const {totalCount} = useContext(DataContext);
-  const {newTodoInputRef} = useContext(ActionsContext)
+  const {stats} = useContext(DataContext);
 
   return (
     <div className={clsx(styles.page)}>
@@ -35,9 +34,9 @@ export const TodosPage = () => {
           </div>
 
 
-          {totalCount > 0 && <TodoFilter />}
+          {stats.total > 0 && <TodoFilter />}
 
-          {totalCount > 0 && <TodoInfo />}
+          {stats.total > 0 && <TodoInfo />}
 
           <TodoList />
 

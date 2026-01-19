@@ -5,6 +5,11 @@ import {SegmentedControl} from "@/shared/ui/SegmentedControl";
 
 import styles from './TodoFilter.module.scss'
 
+const FILTERS = [
+  {value: 'all', label: 'Все'},
+  {value: 'completed', label: 'Выполненные'},
+  {value: 'active', label: 'Активные'},
+]
 
 export const TodoFilter = memo((props) => {
   const {
@@ -14,13 +19,6 @@ export const TodoFilter = memo((props) => {
   const {
     setFilter,
   } = useContext(ActionsContext)
-
-  const FILTERS = [
-    {value: 'all', label: 'Все'},
-    {value: 'completed', label: 'Выполненные'},
-    {value: 'active', label: 'Активные'},
-  ]
-
 
   return (
     <section className={clsx(styles.root)}>
@@ -32,7 +30,7 @@ export const TodoFilter = memo((props) => {
           options={FILTERS}
           value={filter}
           onChange={setFilter}
-          size='sm'
+          size='md'
         />
 
       </div>

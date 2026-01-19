@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import {Field} from '@/shared/ui/Field'
-
-import styles from './TodoFormUI.module.scss'
 import {useEffect, useRef} from "react";
 import {useClickOutside} from "@/shared/lib/hooks/useClickOutside";
+import {Field} from '@/shared/ui/Field'
 
-export const TodoFormUI = (props) => {
+import styles from './BaseForm.module.scss'
+
+export const BaseForm = (props) => {
   const {
     value,
     onChange,

@@ -15,9 +15,9 @@ const EMPTY_MESSAGES = {
 }
 
 export const TodoList = () => {
-  const {filteredTodos, filter, listRef} = useTodoList();
+  const {todos, filter, listRef} = useTodoList();
 
-  if (filteredTodos.length === 0) {
+  if (todos.length === 0) {
     return <EmptyState message={EMPTY_MESSAGES[filter]} />
   }
 
@@ -28,7 +28,7 @@ export const TodoList = () => {
         role="list"
         ref={listRef}
       >
-        {filteredTodos.map((todo) => (
+        {todos.map((todo) => (
           <li
             key={todo.id}
             role="listitem"

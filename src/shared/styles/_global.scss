@@ -50,3 +50,15 @@ body {
 .show {
   display: block;
 }
+
+.hidden-mobile {
+  @media (width <= 768px) {
+    display: none;
+  }
+}
+
+.visible-mobile {
+  @media (width <= 767.98px) {
+    display: block;
+  }
+}
